@@ -1,3 +1,4 @@
+# apps/spring-boot/plain/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -26,44 +27,3 @@ spec:
             limits:
               cpu: "250m"      # 최대 0.25 코어
               memory: "256Mi"  # 최대 256MB
-​
-# apps/spring-boot/plain/service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  name: spring-boot-svc
-  namespace: spring-boot-dev
-spec:
-  selector:
-    app: gitops-app    # Deployment 의 label 과 일치해야 함
-  ports:
-    - port: 80              # 서비스 포트 (외부에서 접근하는 포트)
-      targetPort: 80        # 컨테이너 포트 (Pod 내부 포트)
-  type: ClusterIP           # 클러스터 내부에서만 접근 가능
-​
-# argocd/app-plain.yaml
-# ArgoCD Application 정의
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: spring-boot-plain
-  namespace: argocd           # Application 은 항상 argocd 네임스페이스에 생성
-  finalizers:
-    # App 삭제 시 관련 k8s 리소스도 함께 삭제 (cascade delete)
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  source:
-    repoURL: https://github.com/your-org/gitops-config
-    targetRevision: main
-    path: apps/spring-boot/plain    # 매니페스트 파일들이 있는 경로
-  destination:
-    server: https://kubernetes.default.svc    # 현재 클러스터 (로컬)
-    namespace: spring-boot-dev
-  syncPolicy:
-    automated:
-      prune: true       # Git 삭제 파일 = 클러스터 리소스도 삭제
-      selfHeal: true    # Drift 자동 복구
-    syncOptions:
-      - CreateNamespace=true    # spring-boot-dev 없으면 자동 생성
-      - ServerSideApply=true    # k8s 1.35 권장
