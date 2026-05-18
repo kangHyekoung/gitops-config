@@ -1,0 +1,25 @@
+server:
+  service:
+    type: NodePort
+    nodePort: 30090
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "256Mi"
+    limits:
+      cpu: "300m"
+      memory: "512Mi"
+  persistentVolume:
+    enabled: false
+ 
+alertmanager:
+  enabled: false
+ 
+pushgateway:
+  enabled: false
+ 
+nodeExporter:
+  enabled: true
+ 
+kubeStateMetrics:
+  enabled: true
