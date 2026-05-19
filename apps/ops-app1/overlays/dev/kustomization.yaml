@@ -9,7 +9,7 @@ namespace: ops-app1-dev
 images:
 - name: ops-app1
   newName: dockerlecture2/ops-app1
-  newTag: sha-61007bd
+  newTag: sha-657b509
 
 patches:
 - patch: |-
