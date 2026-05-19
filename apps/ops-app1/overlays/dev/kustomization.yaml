@@ -10,6 +10,7 @@ images:
 - name: ops-app1
   newName: dockerlecture2/ops-app1
   newTag: sha-659ee7d
+- name: ops-app2
 
 patches:
 - patch: |-
