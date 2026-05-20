@@ -14,7 +14,8 @@ spec:
       namespace: "ops-app1-*"
     - server: "https://kubernetes.default.svc"
       namespace: "ops-app2-*"
-
+    - server: "https://kubernetes.default.svc"
+      namespace: "monitoring" # 신규 추가
   clusterResourceWhitelist:
     - group: ""
       kind: Namespace
