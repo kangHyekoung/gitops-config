@@ -3,7 +3,8 @@ kind: Service
 metadata:
   name: ops-app1
   namespace: ops-app1-eks-dev
-  labels: app.kubernetes.io/name:ops-app1
+  labels: # ← 줄바꿈
+    app.kubernetes.io/name: ops-app1 # ← 들여쓰기 추가
 spec:
   selector:
     app.kubernetes.io/name: ops-app1
