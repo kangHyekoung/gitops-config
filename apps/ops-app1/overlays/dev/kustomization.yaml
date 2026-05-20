@@ -8,8 +8,9 @@ namespace: ops-app1-dev
 
 images:
 - name: ops-app1
-  newName: dockerlecture2/ops-app1
-  newTag: sha-61007bd
+  newName: 483031819484.dkr.ecr.ap-northeast-2.amazonaws.com/ops-app1
+  newTag: sha-e393d37
+- name: ops-app2
 
 patches:
 - patch: |-
