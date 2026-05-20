@@ -2,7 +2,7 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: ops-app1
+  name: ops-app2
   namespace: monitoring # Prometheus와 같은 네임스페이스
   labels:
     release: kube-prometheus-stack # 설치한 Helm Release 이름
